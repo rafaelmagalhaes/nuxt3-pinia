@@ -7,8 +7,12 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia';
 import { useTodosStore } from '~/store/todos';
-const { fetchTodos, todos } = useTodosStore();
+
+const store = useTodosStore();
+const { fetchTodos } = store; // have all non reactiave stuff here
+const { todos } = storeToRefs(store); // have all reactive states here
 
 await fetchTodos();
 </script>
